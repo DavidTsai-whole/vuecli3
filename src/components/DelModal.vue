@@ -29,7 +29,6 @@ import modalMixin from '@/mixins/modal'
 export default {
   data () {
     return {
-      modal: ''
     }
   },
   props: ['data'],

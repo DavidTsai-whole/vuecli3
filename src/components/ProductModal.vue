@@ -180,7 +180,6 @@ export default {
   props: ['product', 'isNew'],
   data () {
     return {
-      modal: '',
       tempProduct: {}
     }
   },
