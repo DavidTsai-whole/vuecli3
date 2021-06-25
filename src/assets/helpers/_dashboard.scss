@@ -1,0 +1,35 @@
+.navbar {
+    .navSearch {
+        max-width: 600px;
+    }
+}
+
+.DashSidebar {
+    position: fixed;
+    overflow-y: scroll;
+    width: 280px;
+    top: 56px;
+    height: calc(100vh - 56px);
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: #bbbbbb;
+    }
+    span {
+        border-bottom: 1px solid white;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    li a {
+        display: flex;
+        align-items: center;
+    }
+}
+.DashMain {
+    position: absolute;
+    top:30px;
+    left: 280px;
+    width: calc(100% - 280px);
+}
