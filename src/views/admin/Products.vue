@@ -1,4 +1,5 @@
 <template>
+<Loading :active="isLoading" :z-index="1060"></Loading>
   <div class="DashMain">
     <div class="container">
       <div class="text-end">
@@ -52,6 +53,7 @@ export default {
       products: [],
       pagination: {},
       isNew: false,
+      isLoading: false,
       tempProduct: {}
     }
   },
@@ -66,10 +68,12 @@ export default {
     // 取得所有產品資料
     getProducts (page = 1) {
       const api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`
+      this.isLoading = true
       this.$http.get(api).then(res => {
         if (res.data.success) {
           this.products = res.data.products
           this.pagination = res.data.pagination
+          this.isLoading = false
         }
       }).catch(error => {
         console.log(error)

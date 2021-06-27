@@ -11,6 +11,8 @@ import { localize, setLocale } from '@vee-validate/i18n'
 // 匯入繁體中文語系檔案
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import VueSweetalert2 from 'vue-sweetalert2'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 import App from './App.vue'
 import router from './router'
@@ -38,6 +40,7 @@ app.config.globalProperties.$filters = {
 app.component('Form', Form)
 app.component('Field', Field)
 app.component('ErrorMessage', ErrorMessage)
+app.component('Loading', Loading)
 app.use(router)
 app.use(VueSweetalert2)
 app.use(VueAxios, axios)
