@@ -1,9 +1,9 @@
 <template>
-  <div class="modal" tabindex="-1">
+  <div class="modal fade" tabindex="-1" ref="modal">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">刪除 {{data.title}}</h5>
           <button
             type="button"
             class="btn-close"
@@ -12,13 +12,13 @@
           ></button>
         </div>
         <div class="modal-body">
-          <p>Modal body text goes here.</p>
+          <p>確定要刪除 {{data.title}}?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Close
+            取消
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-danger" @click="$emit('update-delete', data.id)">確認</button>
         </div>
       </div>
     </div>

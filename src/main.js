@@ -10,9 +10,11 @@ import rules from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
 // 匯入繁體中文語系檔案
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
+import VueSweetalert2 from 'vue-sweetalert2'
 
 import App from './App.vue'
 import router from './router'
+import { date } from '@/methods/filters'
 
 Object.keys(rules).forEach(rule => {
   defineRule(rule, rules[rule])
@@ -28,9 +30,15 @@ setLocale('zh_TW')
 
 // createApp(App).use(router).mount('#app')
 const app = createApp(App)
+
+// 掛載給全域使用
+app.config.globalProperties.$filters = {
+  date
+}
 app.component('Form', Form)
 app.component('Field', Field)
 app.component('ErrorMessage', ErrorMessage)
 app.use(router)
-app.mount('#app')
+app.use(VueSweetalert2)
 app.use(VueAxios, axios)
+app.mount('#app')

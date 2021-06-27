@@ -39,12 +39,12 @@
        <pagination :pages="pagination" @update-page="getProducts"></pagination>
     </div>
     <ProductModal ref="productModal" :product="tempProduct" :isNew="isNew" @update-products="updateProducts"></ProductModal>
-    <!--git <DelModal ref="delModal"></DelModal>-->
+    <DelModal ref="dpModal" :data="tempProduct" @update-delete="updateDelete"></DelModal>
   </div>
 </template>
 <script>
 import ProductModal from '@/components/ProductModal.vue'
-// import DelModal from '@/components/DelModal.vue'
+import DelModal from '@/components/DelModal.vue'
 import Pagination from '@/components/Pagination.vue'
 export default {
   data () {
@@ -57,10 +57,11 @@ export default {
   },
   components: {
     ProductModal,
-    Pagination
-    // DelModal
+    Pagination,
+    DelModal
 
   },
+  inject: ['pushMessageStatus'],
   methods: {
     // 取得所有產品資料
     getProducts (page = 1) {
@@ -69,9 +70,9 @@ export default {
         if (res.data.success) {
           this.products = res.data.products
           this.pagination = res.data.pagination
-        } else {
-          alert(res.data.message)
         }
+      }).catch(error => {
+        console.log(error)
       })
     },
     openModal (isNew, item) {
@@ -97,20 +98,35 @@ export default {
       }
       this.$http[httpMethod](api, { data: this.tempProduct }).then(res => {
         if (res.data.success) {
-          alert(res.data.message)
+          this.$swal({
+            icon: 'success',
+            title: '後台產品',
+            text: res.data.message,
+            confirmButtonText: '了解'
+          })
           newModal.hideModal()
           this.getProducts(this.pagination.current_page)
         } else {
-          alert(res.data.message)
         }
       }).catch(error => {
         console.log(error)
       })
     },
     // 刪除產品
-    delModal () {
-      const newModal = this.$refs.delModal
-      newModal.openModal()
+    delModal (item) {
+      this.tempProduct = { ...item }
+      this.$refs.dpModal.openModal()
+    },
+    // 刪除確認鍵
+    updateDelete (id) {
+      const api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/admin/product/${id}`
+      this.$http.delete(api).then(res => {
+        if (res.data.success) {
+          alert(res.data.message)
+          this.getProducts(this.pagination.current_page)
+          this.$refs.dpModal.hideModal()
+        }
+      })
     }
   },
   created () {

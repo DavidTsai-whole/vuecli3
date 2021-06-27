@@ -18,8 +18,8 @@
         <tbody>
           <tr v-for="item in coupons" :key="item.id">
           <td>{{item.title}}</td>
-          <td>{{item.percent}}</td>
-          <td>{{item.due_date}}</td>
+          <td>{{item.percent}}%</td>
+          <td>{{ $filters.date(item.due_date)}}</td>
           <td>
           <span v-if="item.is_enabled === 1" class="text-success fw-bold">啟用</span>
           <span v-else class="text-danger fw-bold">停用</span>
@@ -27,7 +27,7 @@
           <td class="text-center">
           <div class="btn-group">
           <button class="btn btn-secondary" @click="openModal(false, item )">編輯</button>
-          <button class="btn btn-danger">刪除</button>
+          <button class="btn btn-danger"  @click="delModal(item)">刪除</button>
           </div>
           </td>
           </tr>
@@ -35,21 +35,24 @@
       </table>
       </div>
     </div>
-    <couponModal ref="couponModal" :data="tempProduct"></couponModal>
+    <couponModal ref="couponModal" :data="tempCoupon" @update-coupon="updateCoupon" :isNew="isNew"></couponModal>
+    <delModal ref="dcModal" :data="tempCoupon" @update-delete="updateDelete"></delModal>
   </div>>
 </template>
 <script>
 import couponModal from '@/components/CouponModal.vue'
+import delModal from '@/components/DelModal.vue'
 export default {
   data () {
     return {
       coupons: [],
-      tempProduct: {},
+      tempCoupon: {},
       isNew: false
     }
   },
   components: {
-    couponModal
+    couponModal,
+    delModal
   },
   methods: {
     getCoupons (page = 1) {
@@ -63,11 +66,52 @@ export default {
     openModal (isNew, item) {
       this.isNew = isNew
       if (isNew) {
-        this.tempProduct = {}
+        this.tempCoupon = {
+          due_date: Math.floor(Date.now() / 1000),
+          is_enabled: 0,
+          percent: 100
+        }
       } else {
-        this.tempProduct = { ...item }
+        this.tempCoupon = { ...item }
       }
       this.$refs.couponModal.openModal()
+    },
+    updateCoupon (item) {
+      let api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/admin/coupon`
+      let httpMethod = 'post'
+      if (!this.isNew) {
+        httpMethod = 'put'
+        api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/admin/coupon/${item.id}`
+      }
+      this.$http[httpMethod](api, { data: item }).then(res => {
+        if (res.data.success) {
+          alert(res.data.message)
+          this.getCoupons()
+          this.$refs.couponModal.hideModal()
+        } else {
+          alert(res.data.message)
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    delModal (item) {
+      this.tempCoupon = { ...item }
+      this.$refs.dcModal.openModal()
+    },
+    updateDelete (id) {
+      const api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/admin/coupon/${id}`
+      this.$http.delete(api).then(res => {
+        if (res.data.success) {
+          alert(res.data.message)
+          this.getCoupons()
+          this.$refs.dcModal.hideModal()
+        } else {
+          alert(res.data.message)
+        }
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   created () {
