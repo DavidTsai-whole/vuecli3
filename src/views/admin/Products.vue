@@ -1,5 +1,5 @@
 <template>
-<Loading :active="isLoading" :z-index="1060"></Loading>
+<Loading :active="isLoading"></Loading>
   <div class="DashMain">
     <div class="container">
       <div class="text-end">
@@ -102,12 +102,7 @@ export default {
       }
       this.$http[httpMethod](api, { data: this.tempProduct }).then(res => {
         if (res.data.success) {
-          this.$swal({
-            icon: 'success',
-            title: '後台產品',
-            text: res.data.message,
-            confirmButtonText: '了解'
-          })
+          this.$sweetalert2(res)
           newModal.hideModal()
           this.getProducts(this.pagination.current_page)
         } else {

@@ -17,6 +17,7 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 import App from './App.vue'
 import router from './router'
 import { date } from '@/methods/filters'
+import sweetalert2 from '@/methods/sweetalert2'
 
 Object.keys(rules).forEach(rule => {
   defineRule(rule, rules[rule])
@@ -37,6 +38,8 @@ const app = createApp(App)
 app.config.globalProperties.$filters = {
   date
 }
+app.config.globalProperties.$sweetalert2 = sweetalert2
+
 app.component('Form', Form)
 app.component('Field', Field)
 app.component('ErrorMessage', ErrorMessage)
