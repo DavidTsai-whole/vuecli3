@@ -2,12 +2,13 @@
 @import "./helpers/variables";
 @import "~bootstrap/scss/mixins";
 
-@import './helpers/reset';
+
+@import './helpers/base';
 @import './helpers/custom';
-@import './helpers/login';
-@import './helpers/dashboard';
 @import './helpers/navbar';
+@import './helpers/index';
 
 
 @import "~bootstrap";
+
 @import '~sweetalert2/dist/sweetalert2.min.css'

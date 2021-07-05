@@ -2,7 +2,7 @@
   <div class="container">
     <div class="main row">
       <div class="col-8 col-md-5 m-auto">
-        <form class="loginForm p-5">
+        <form class="loginForm p-5" @submit.prevent="goToAdmin">
           <h1 class="fw-bold text-center">登入頁面</h1>
           <label for="account">帳號</label>
           <input type="email" id="account" placeholder="email" class="form-control mb-2"
@@ -24,7 +24,7 @@
 
           <!--d-block改成在外層加上d-grid-->
           <div class="d-grid mt-2">
-            <button class="btn btn-lg btn-primary" @click="goToAdmin">登入</button>
+            <button class="btn btn-lg btn-primary">登入</button>
           </div>
         </form>
       </div>

@@ -13,6 +13,7 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import VueSweetalert2 from 'vue-sweetalert2'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
+import VueTypedJs from 'vue-typed-js'
 
 import App from './App.vue'
 import router from './router'
@@ -47,4 +48,5 @@ app.component('Loading', Loading)
 app.use(router)
 app.use(VueSweetalert2)
 app.use(VueAxios, axios)
+app.use(VueTypedJs)
 app.mount('#app')
