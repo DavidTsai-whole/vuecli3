@@ -345,14 +345,18 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns:                12 !default;
-$grid-gutter-width:           1.5rem !default;
+$grid-gutter-width:           30px;//1.5rem !default;
 $grid-row-columns:            6 !default;
 
-$gutters: $spacers !default;
+$gutters: (
+2: 10px,
+3:20px,
+4:30px,
+);
 
 // Container padding
 
-$container-padding-x: $grid-gutter-width / 2 !default;
+$container-padding-x:$grid-gutter-width / 2 !default;
 
 
 // Components
@@ -629,7 +633,7 @@ $btn-font-size-sm:            $input-btn-font-size-sm !default;
 
 $btn-padding-y-lg:            $input-btn-padding-y-lg !default;
 $btn-padding-x-lg:            $input-btn-padding-x-lg !default;
-$btn-font-size-lg:            $input-btn-font-size-lg !default;
+$btn-font-size-lg:            18px;//$input-btn-font-size-lg !default;
 
 $btn-border-width:            $input-btn-border-width !default;
 
