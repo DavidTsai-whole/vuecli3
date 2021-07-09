@@ -10,6 +10,9 @@
         </div>
       </div>
       <a href="#" class="btn-custom hvr-bounce-to-right mt-5">點我前往</a>
+      <div class="down text-center animate__animated animate__bounce animate__infinite infinite">
+      <i class="bi bi-chevron-double-down text-primary fs-1"></i>
+      </div>
     </div>
   </div>
   <div class="about py-3">
