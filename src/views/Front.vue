@@ -1,5 +1,5 @@
 <template>
-<Navbar :data="classList"></Navbar>
+<Navbar></Navbar>
 <router-view></router-view>
 <Footer></Footer>
 </template>
@@ -8,28 +8,9 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 export default {
-  data () {
-    return {
-      classList: {
-        bg: '',
-        text: ''
-      }
-    }
-  },
   components: {
     Navbar,
     Footer
-  },
-  mounted () {
-    window.addEventListener('scroll', () => {
-      if (scrollY > 0) {
-        this.classList.bg = 'bg-orange'
-        this.classList.text = 'text-primary'
-      } else {
-        this.classList.bg = ''
-        this.classList.text = ''
-      }
-    })
   }
 }
 </script>

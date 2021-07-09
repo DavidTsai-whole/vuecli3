@@ -1,50 +1,52 @@
-.banner {
-    min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-        url("https://upload.cc/i1/2021/07/05/WUaS3z.jpg");
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    .container {
-        margin: auto
+.index {
+    .banner {
+        min-height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+            url("https://upload.cc/i1/2021/07/05/WUaS3z.jpg");
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        .container {
+            margin: auto;
+        }
     }
-}
 
-.about {
-    .aboutImg {
-        height: 450px;
-        background-image: url('https://upload.cc/i1/2021/07/05/acd5jH.jpg');
-    }
-    .aboutContent {
-        h2 {
-            border-bottom: 2px solid $primary;
+    .about {
+        .aboutImg {
+            height: 450px;
+            background-image: url("https://upload.cc/i1/2021/07/05/acd5jH.jpg");
+        }
+        .aboutContent {
+            h2 {
+                border-bottom: 2px solid $primary;
+            }
         }
     }
-}
-.indexProduct {
-    .swiper-slide {
-        position: relative;
-        img{
-            width: 100%;
-            height:250px;
-            object-fit: cover;
-        }
-        .imgHover {
-            position: absolute;
-            background: rgba($orange, 0.6);
-            top:0;
-            left:0;
-            right:0;
-            bottom:0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.4s;
-            opacity: 0;
-        }
-        &:hover {
+    .indexProduct {
+        .swiper-slide {
+            position: relative;
+            img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+            }
             .imgHover {
-                opacity: 1;
+                position: absolute;
+                background: rgba($orange, 0.6);
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 0.4s;
+                opacity: 0;
+            }
+            &:hover {
+                .imgHover {
+                    opacity: 1;
+                }
             }
         }
     }

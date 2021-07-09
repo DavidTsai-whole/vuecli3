@@ -63,7 +63,6 @@ export default {
     DelModal
 
   },
-  inject: ['pushMessageStatus'],
   methods: {
     // 取得所有產品資料
     getProducts (page = 1) {

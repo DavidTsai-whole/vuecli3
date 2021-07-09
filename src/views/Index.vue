@@ -1,4 +1,5 @@
 <template>
+<div class="index">
   <div class="banner d-flex">
     <div class="container">
       <div class="banner-text text-white">
@@ -90,6 +91,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </template>
 
@@ -105,6 +107,27 @@ export default {
   components: {
     Swiper,
     SwiperSlide
+  },
+  data () {
+    return {
+      classList: {
+        bg: '',
+        text: ''
+      }
+    }
+  },
+  inject: ['emitter'],
+  mounted () {
+    window.addEventListener('scroll', () => {
+      if (scrollY > 0) {
+        this.classList.bg = 'bg-orange'
+        this.classList.text = 'text-primary'
+      } else {
+        this.classList.bg = ''
+        this.classList.text = ''
+      }
+    })
+    this.emitter.emit('pushNavbar', this.classList)
   }
 }
 </script>

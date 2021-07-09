@@ -1,7 +1,7 @@
 <template>
-    <nav class="nav fixed-top" :class="data.bg">
+    <nav class="nav fixed-top" :class="classList.bg">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-    <a href="#" class="h1 fw-bold font-family-indie-flower" :class="data.text">CHILLBURGER</a>
+    <a href="#" class="h1 fw-bold font-family-indie-flower" :class="classList.text">CHILLBURGER</a>
     <ul class="menu d-flex list-unstyled fw-bold fs-5 mb-0" ref="menu">
       <li><a href=""><i class="bi bi-grid-fill"></i> 商品列表</a></li>
       <li><a href=""><i class="bi bi-chat-dots"></i> 關於我們</a></li>
@@ -29,6 +29,7 @@ export default {
     }
   },
   props: ['data'],
+  inject: ['emitter'],
   methods: {
     toggleIcon () {
       const menuIcon = this.$refs.menuIcon
@@ -36,6 +37,11 @@ export default {
       menuIcon.classList.toggle('active')
       menu.classList.toggle('active')
     }
+  },
+  mounted () {
+    this.emitter.on('pushNavbar', (res) => {
+      this.classList = res
+    })
   }
 }
 </script>
