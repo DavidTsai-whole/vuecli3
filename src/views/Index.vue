@@ -42,20 +42,46 @@
   <div class="indexProduct py-3">
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col text-center">
           <h2 class="text-primary fw-bold text-start mb-5">熱銷TOP</h2>
-          <swiper :slides-per-view="3" :space-between="10">
+          <swiper
+            :space-between="10"
+            loop
+            :autoplay='{
+              delay:3000
+            }'
+            :breakpoints='{
+              992: {
+                slidesPerView: 3,
+              },
+              768: {
+                slidesPerView: 2,
+              }
+            }'
+           >
             <swiper-slide>
                 <img src="https://upload.cc/i1/2021/07/07/KzpvDF.jpg" alt="" />
+                <div class="imgHover">
+                <a href="#" class="btn-detail">了解更多</a>
+                </div>
             </swiper-slide>
             <swiper-slide>
               <img src="https://upload.cc/i1/2021/07/07/4SLoTG.jpg" alt="">
+              <div class="imgHover">
+                <a href="#" class="btn-detail">了解更多</a>
+                </div>
             </swiper-slide>
             <swiper-slide>
               <img src="https://upload.cc/i1/2021/07/07/LBwJIM.jpg" alt="">
+              <div class="imgHover">
+                <a href="#" class="btn-detail">了解更多</a>
+                </div>
             </swiper-slide>
             <swiper-slide>
               <img src="https://upload.cc/i1/2021/07/07/LBwJIM.jpg" alt="">
+              <div class="imgHover">
+                <a href="#" class="btn-detail">了解更多</a>
+                </div>
             </swiper-slide>
           </swiper>
         </div>
@@ -65,36 +91,13 @@
 </template>
 
 <script>
-import SwiperCore, { Navigation, Pagination } from 'swiper/core'
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'
-SwiperCore.use([Navigation, Pagination])
-/* const swiper = new Swiper('.swiper-container', {
-  // Default parameters
-  slidesPerView: 1,
-  spaceBetween: 10,
-  // Responsive breakpoints
-  breakpoints: {
-    // when window width is >= 320px
-    320: {
-      slidesPerView: 2,
-      spaceBetween: 20
-    },
-    // when window width is >= 480px
-    480: {
-      slidesPerView: 3,
-      spaceBetween: 30
-    },
-    // when window width is >= 640px
-    640: {
-      slidesPerView: 4,
-      spaceBetween: 40
-    }
-  }
-})
-*/
+SwiperCore.use([Navigation, Pagination, Autoplay])
+
 export default {
   components: {
     Swiper,

@@ -1,10 +1,12 @@
 <template>
 <Navbar :data="classList"></Navbar>
 <router-view></router-view>
+<Footer></Footer>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 export default {
   data () {
     return {
@@ -15,7 +17,8 @@ export default {
     }
   },
   components: {
-    Navbar
+    Navbar,
+    Footer
   },
   mounted () {
     window.addEventListener('scroll', () => {

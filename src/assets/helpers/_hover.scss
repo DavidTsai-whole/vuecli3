@@ -1444,6 +1444,13 @@
     transition-duration: 0.5s;
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
+    width: calc(100% + 2px);
+    //寬度設定為父階層的寬度 + 2px（左右 border 寬度相加），讓寬度跟父階層相同
+    height: calc(100% + 2px);
+    top: -1px;
+    // 如果設定 top: 0，實際上 hover 的顏色區塊會放在按鈕 border 「內」的位置。設定 -1，則讓顏色區塊位置放在 border 上面
+    left: -1px;
+    border-radius: 5px;
 }
 .hvr-bounce-to-right:active,
 .hvr-bounce-to-right:focus,

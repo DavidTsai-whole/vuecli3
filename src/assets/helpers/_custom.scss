@@ -11,6 +11,15 @@ font-size: 16px;
 color:$primary;
 font-weight: bold;
 }
+.btn-detail{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color:$white;
+    font-weight: bold;
+    background: $primary;
+    }
 .zindex-1 {
     z-index: 1;
 }
