@@ -1,4 +1,4 @@
-export default function (res) {
+export function sweetalert2 (res) {
   if (res.data.success) {
     this.$swal({
       icon: 'success',

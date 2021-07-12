@@ -31,11 +31,29 @@
             right:0;
         }
     }
-    .menu-icon a {
-        transition: all 0.3s;
-        &:hover {
-            color: $primary;
+    .menu-icon {
+        position: relative;
+        a {
+            transition: all 0.3s;
+            &:hover {
+                color: $primary;
+            }
         }
+        .cartNum {
+            position: absolute;
+            font-size: 10px;
+            background: $primary;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color:$white;
+            top:0px;
+            left:13px
+        }
+        
     }
     .menu-toggle {
         position: relative;

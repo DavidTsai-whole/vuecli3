@@ -11,14 +11,16 @@ import { localize, setLocale } from '@vee-validate/i18n'
 // 匯入繁體中文語系檔案
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import 'animate.css'
 
 import App from './App.vue'
 import router from './router'
+
 import { date } from '@/methods/filters'
-import sweetalert2 from '@/methods/sweetalert2'
+import { sweetalert2 } from '@/methods/sweetalert2'
 
 Object.keys(rules).forEach(rule => {
   defineRule(rule, rules[rule])
