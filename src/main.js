@@ -20,7 +20,7 @@ import App from './App.vue'
 import router from './router'
 
 import { date } from '@/methods/filters'
-import { sweetalert2 } from '@/methods/sweetalert2'
+import { sweetalert2, sweetalert } from '@/methods/sweetalert2'
 
 Object.keys(rules).forEach(rule => {
   defineRule(rule, rules[rule])
@@ -42,6 +42,7 @@ app.config.globalProperties.$filters = {
   date
 }
 app.config.globalProperties.$sweetalert2 = sweetalert2
+app.config.globalProperties.$sweetalert = sweetalert
 
 app.component('Form', Form)
 app.component('Field', Field)

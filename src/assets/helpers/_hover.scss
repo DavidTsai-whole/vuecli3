@@ -1823,7 +1823,7 @@
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
-    background: #e1e1e1;
+    background: transparent;
     -webkit-transition-property: color;
     transition-property: color;
     -webkit-transition-duration: 0.3s;
@@ -1837,7 +1837,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: #2098d1;
+    background: $success;
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
     -webkit-transform-origin: 50%;
@@ -1848,6 +1848,13 @@
     transition-duration: 0.3s;
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
+    width: calc(100% + 2px);
+    //寬度設定為父階層的寬度 + 2px（左右 border 寬度相加），讓寬度跟父階層相同
+    height: calc(100% + 2px);
+    top: -1px;
+    // 如果設定 top: 0，實際上 hover 的顏色區塊會放在按鈕 border 「內」的位置。設定 -1，則讓顏色區塊位置放在 border 上面
+    left: -1px;
+    border-radius: 5px;
 }
 .hvr-shutter-out-horizontal:active,
 .hvr-shutter-out-horizontal:focus,

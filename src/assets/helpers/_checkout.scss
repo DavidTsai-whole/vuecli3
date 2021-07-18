@@ -1,0 +1,18 @@
+.checkout {
+    margin-top: 80px;
+    .banner {
+        height: 350px;
+        background-image: url("https://upload.cc/i1/2021/07/13/FGiPaB.jpg");
+    }
+   .order {
+       .orderDetail {
+           border-bottom: 1px solid#BEBEBE;
+           img {
+               height: 60px;
+               width: 100px;
+               object-fit: cover;
+           }
+       }
+   }
+    
+}

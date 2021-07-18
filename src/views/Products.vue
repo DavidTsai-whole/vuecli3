@@ -76,17 +76,21 @@
         <div class="col-lg-8">
           <div class="row">
             <div class="col-lg-4 col-md-6 my-2" v-for="item in filterProduct" :key="item.id">
-              <div class="card">
+              <div class="card" @click="productDetail(item)">
                 <div class="card-img">
                   <img :src="item.imageUrl" class="card-img-top" alt="" />
                   <ul class="action list-unstyled">
-                    <li @click.prevent="addCart(item)">
+                    <li @click.stop="addCart(item)">
                       <i class="bi bi-cart" ></i>
                       <span>加入購物車</span>
                     </li>
-                    <li>
+                    <li v-if="favoriteData.indexOf(item.id) === -1" @click.stop="addFavorite(item.id)">
                       <i class="bi bi-heart"></i>
                       <span>追蹤商品</span>
+                    </li>
+                    <li class="active" v-else @click.stop="addFavorite(item.id)">
+                      <i class="bi bi-heart"></i>
+                      <span>取消追蹤</span>
                     </li>
                   </ul>
                 </div>
@@ -105,7 +109,7 @@
               </div>
             </div>
           </div>
-          <Pagination :pages="pagination" @update-page="getProducts"></Pagination>
+          <Pagination :pages="pagination" @update-page="getProducts" ></Pagination>
         </div>
       </div>
     </div>
@@ -122,7 +126,8 @@ export default {
       category: 'all',
       pagination: {},
       selected: '1',
-      filterText: ''
+      filterText: '',
+      favoriteData: JSON.parse(localStorage.getItem('favorite')) || []
     }
   },
   inject: ['emitter'],
@@ -155,6 +160,22 @@ export default {
           this.isLoading = false
         }
       })
+    },
+    productDetail (item) {
+      this.$router.push(`/product/${item.id}`)
+    },
+    addFavorite (id) {
+      const followId = this.favoriteData.indexOf(id)
+      if (followId === -1) {
+        this.favoriteData.push(id)
+        this.emitter.emit('update-favorite')
+        this.$sweetalert('已加入追蹤')
+      } else {
+        this.favoriteData.splice(followId, 1)
+        this.emitter.emit('update-favorite')
+        this.$sweetalert('已取消追蹤')
+      }
+      localStorage.setItem('favorite', JSON.stringify(this.favoriteData))
     }
   },
   computed: {

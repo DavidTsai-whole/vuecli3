@@ -120,7 +120,7 @@ export default {
       const api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/admin/product/${id}`
       this.$http.delete(api).then(res => {
         if (res.data.success) {
-          alert(res.data.message)
+          this.$sweetalert2(res)
           this.getProducts(this.pagination.current_page)
           this.$refs.dpModal.hideModal()
         }

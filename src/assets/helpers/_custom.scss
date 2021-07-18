@@ -1,27 +1,37 @@
-
-
 .bg-cover {
     background-size: cover;
     background-position: center;
 }
 .btn-custom {
-display: inline-block;
-padding: 10px 20px;
-border:1px solid $primary;
-border-radius: 5px;
-font-size: 16px;
-color:$primary;
-font-weight: bold;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid $primary;
+    border-radius: 5px;
+    font-size: 16px;
+    color: $primary;
+    font-weight: bold;
 }
-.btn-detail{
+
+.btn-custom2 {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid $success;
+    border-radius: 5px;
+    font-size: 16px;
+    color: $success;
+    font-weight: bold;
+}
+
+.btn-detail {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 16px;
-    color:$white;
+    color: $white;
     font-weight: bold;
     background: $primary;
-    }
+}
 .zindex-1 {
     z-index: 1;
 }
+

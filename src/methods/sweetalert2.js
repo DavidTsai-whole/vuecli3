@@ -13,3 +13,10 @@ export function sweetalert2 (res) {
     })
   }
 }
+export function sweetalert (res) {
+  this.$swal({
+    icon: 'success',
+    title: res,
+    confirmButtonText: '了解'
+  })
+}

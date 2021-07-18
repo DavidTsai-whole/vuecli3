@@ -4,6 +4,7 @@
       <div class="modal-content">
         <div class="modal-header bg-danger text-white">
           <h5 class="modal-title">刪除 {{data.title}}</h5>
+
           <button
             type="button"
             class="btn-close"
@@ -27,11 +28,8 @@
 <script>
 import modalMixin from '@/mixins/modal'
 export default {
-  data () {
-    return {
-    }
-  },
   props: ['data'],
   mixins: [modalMixin]
+
 }
 </script>

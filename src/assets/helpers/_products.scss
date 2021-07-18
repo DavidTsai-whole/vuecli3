@@ -59,6 +59,14 @@
                     opacity: 0;
                 }
             }
+            .active {
+                background: $primary;
+                    color: $orange;
+                    span {
+                        transform: translateY(-50%) translateX(0px);
+                        opacity: 0;
+                    }
+            }
         }
         &:hover {
             img {

@@ -1,0 +1,26 @@
+.favorite {
+    margin-top: 80px;
+    .banner {
+        height: 350px;
+        background-image: url("https://upload.cc/i1/2021/07/17/zDVSZC.jpg");
+    }
+    .wishCard {
+        img {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+        }
+        .icon {
+            i {
+                cursor: pointer;
+            }
+        }
+    }
+    .noWish {
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 400px
+        }
+    }
+}
