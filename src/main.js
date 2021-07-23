@@ -15,7 +15,7 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import 'animate.css'
-
+import AosVue from 'aos-vue'
 import App from './App.vue'
 import router from './router'
 
@@ -50,5 +50,6 @@ app.component('ErrorMessage', ErrorMessage)
 app.component('Loading', Loading)
 app.use(router)
 app.use(VueSweetalert2)
+app.use(AosVue)
 app.use(VueAxios, axios)
 app.mount('#app')

@@ -2,6 +2,10 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
   {
+    path: '*',
+    redirect: '/'
+  },
+  {
     path: '/',
     component: () => import('../views/Front.vue'),
     children: [
@@ -28,6 +32,18 @@ const routes = [
       {
         path: 'checkout',
         component: () => import('../views/Checkout.vue')
+      },
+      {
+        path: 'order/:id',
+        component: () => import('../views/Order.vue')
+      },
+      {
+        path: 'question',
+        component: () => import('../views/Question.vue')
+      },
+      {
+        path: 'about',
+        component: () => import('../views/About.vue')
       }
     ]
   },

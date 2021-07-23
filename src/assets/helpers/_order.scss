@@ -1,0 +1,24 @@
+.finalOrder {
+    margin-top: 80px;
+    .banner {
+        height: 350px;
+        background-image: url("https://upload.cc/i1/2021/07/13/FGiPaB.jpg");
+    }
+    .bannerSuccess {
+        height: 450px;
+        background-image: url("https://upload.cc/i1/2021/07/20/Ws93Aq.jpg");
+        position: relative;
+        section {
+            position: absolute;
+            left: 0;
+            right:0;
+            top:50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+        }
+    }
+    .information {
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.46);
+    }
+}

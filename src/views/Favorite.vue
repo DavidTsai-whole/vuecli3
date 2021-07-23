@@ -4,7 +4,7 @@
     <div class="banner bg-cover"></div>
     <div class="container mt-5">
       <div class="row d-flex justify-content-center">
-        <div class="col-6">
+        <div class="col-lg-6 col-md-8">
           <h2 class="fw-bold mb-5 text-center">願望清單</h2>
           <div class="wish" v-if="favoriteData.length !==0">
           <div

@@ -109,7 +109,6 @@
               </div>
             </div>
           </div>
-          <Pagination :pages="pagination" @update-page="getProducts" ></Pagination>
         </div>
       </div>
     </div>
@@ -117,32 +116,26 @@
 </template>
 
 <script>
-import Pagination from '@/components/Pagination.vue'
 export default {
   data () {
     return {
       products: [],
       isLoading: false,
       category: 'all',
-      pagination: {},
       selected: '1',
       filterText: '',
       favoriteData: JSON.parse(localStorage.getItem('favorite')) || []
     }
   },
   inject: ['emitter'],
-  components: {
-    Pagination
-  },
   methods: {
-    getProducts (page = 1) {
-      const api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/products?page=${page}`
+    getProducts () {
+      const api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/products/all`
       this.isLoading = true
       this.$http.get(api).then((res) => {
         if (res.data.success) {
           this.isLoading = false
           this.products = res.data.products
-          this.pagination = res.data.pagination
         }
       })
     },
@@ -168,14 +161,13 @@ export default {
       const followId = this.favoriteData.indexOf(id)
       if (followId === -1) {
         this.favoriteData.push(id)
-        this.emitter.emit('update-favorite')
         this.$sweetalert('已加入追蹤')
       } else {
         this.favoriteData.splice(followId, 1)
-        this.emitter.emit('update-favorite')
         this.$sweetalert('已取消追蹤')
       }
       localStorage.setItem('favorite', JSON.stringify(this.favoriteData))
+      this.emitter.emit('update-favorite')
     }
   },
   computed: {

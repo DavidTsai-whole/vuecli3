@@ -12,11 +12,11 @@
             </li>
           </ol>
         </nav>
-        <div class="col">
+        <div class="col-lg-6">
           <img :src="product.imageUrl" alt="" />
         </div>
-        <div class="col">
-          <h2 class="fw-bold">{{ product.title }}</h2>
+        <div class="col-lg-6">
+          <h2 class="fw-bold mt-lg-0 mt-2">{{ product.title }}</h2>
           <hr class="bg-dark" />
           <h4 class="category d-inline-block text-white">{{ product.category }}</h4>
           <div class="price text-end mt-5">
@@ -83,7 +83,7 @@
               role="tabpanel"
               aria-labelledby="nav-profile-tab"
             >
-              每次購物滿 799 元以上免外送費，未達 799 元 需加付 80 元外送費。
+              每次購物滿 599 元以上免外送費，未達 599 元 需加付 80 元外送費。
               出單時間為 1-2小時。
             </div>
           </div>

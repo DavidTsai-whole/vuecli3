@@ -13,9 +13,9 @@
             @click.prevent="allDelete"
             >全部刪除</a
           >
+          <div class="table-responsive-xxl" v-if="cartData.length !== 0">
           <table
             class="table fs-4 align-middle table-borderless"
-            v-if="cartData.length !== 0"
           >
             <thead class="border-bottom border-dark">
               <tr>
@@ -69,6 +69,7 @@
               </tr>
             </tfoot>
           </table>
+          </div>
           <div class="noCart" v-else>
             <h4 class="fw-bold mb-5">哎呀！您的購物車是空的，趕快去挑選商品吧！</h4>
             <img src="https://upload.cc/i1/2021/07/13/OGfKXe.jpg" alt="" />

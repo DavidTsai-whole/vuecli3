@@ -1,5 +1,6 @@
 .index {
     .banner {
+        position: relative;
         min-height: 100vh;
         background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
             url("https://upload.cc/i1/2021/07/05/WUaS3z.jpg");
@@ -8,6 +9,13 @@
         background-attachment: fixed;
         .container {
             margin: auto;
+            .down {
+                cursor: pointer;
+                position: absolute;
+                left: 0;
+                right:0;
+                bottom:100px;
+            }
         }
     }
 
@@ -15,6 +23,9 @@
         .aboutImg {
             height: 450px;
             background-image: url("https://upload.cc/i1/2021/07/05/acd5jH.jpg");
+            @include media-breakpoint-down(sm) {
+                height: 350px;
+            }
         }
         .aboutContent {
             h2 {

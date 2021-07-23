@@ -459,13 +459,13 @@ $h6-font-size:                $font-size-base !default;
 
 // scss-docs-start font-sizes
 $font-sizes: (
-  48: 48px,
   1: $h1-font-size,
   2: $h2-font-size,
   3: $h3-font-size,
   4: $h4-font-size,
   5: $h5-font-size,
-  6: $h6-font-size
+  6: $h6-font-size,
+  7: 50px
 ) !default;
 // scss-docs-end font-sizes
 
@@ -793,7 +793,7 @@ $input-group-addon-padding-x:           $input-padding-x !default;
 $input-group-addon-font-weight:         $input-font-weight !default;
 $input-group-addon-color:               $primary;//$input-color !default;
 $input-group-addon-bg:                  $orange;//$gray-200 !default;
-$input-group-addon-border-color:        $input-border-color !default;
+$input-group-addon-border-color:        $orange;//$input-border-color !default;
 // scss-docs-end input-group-variables
 
 // scss-docs-start form-select-variables

@@ -93,7 +93,7 @@ export default {
   watch: {
     data () {
       this.tempCoupon = this.data
-      this.due_date = new Date(this.tempCoupon.due_date * 1000).toLocaleDateString()
+      this.due_date = new Date(this.tempCoupon.due_date * 1000).toISOString().split('T')
     },
     due_date () {
       this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000)

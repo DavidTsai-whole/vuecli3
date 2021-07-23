@@ -4,7 +4,7 @@
     <div class="banner bg-cover"></div>
     <div class="container mt-5">
       <div class="row mb-4">
-        <div class="col-7">
+        <div class="col-md-7 order-md-0 order-1 mt-md-0 mt-5">
           <h2 class="fw-bold">訂購人資訊</h2>
           <hr class="bg-dark" style="opacity: 1" />
           <Form v-slot="{ errors }">
@@ -17,6 +17,7 @@
                 name="email"
                 type="email"
                 class="form-control"
+                v-model="form.user.email"
                 :class="{ 'is-invalid': errors['email'] }"
                 rules="email|required"
                 placeholder="請輸入 Email"
@@ -31,6 +32,7 @@
                 id="name"
                 name="姓名"
                 type="text"
+                v-model="form.user.name"
                 class="form-control"
                 placeholder="請輸入姓名"
                 :class="{ 'is-invalid': errors['姓名'] }"
@@ -48,6 +50,7 @@
                 name="電話"
                 type="text"
                 class="form-control"
+                v-model="form.user.tel"
                 placeholder="請輸入電話"
                 :class="{ 'is-invalid': errors['電話'] }"
                 rules="required|min:8|max:10"
@@ -62,6 +65,7 @@
                 id="address"
                 name="地址"
                 type="text"
+                v-model="form.user.address"
                 class="form-control"
                 placeholder="請輸入地址"
                 :class="{ 'is-invalid': errors['地址'] }"
@@ -77,11 +81,11 @@
               <a href="#/cart" class="btn-custom2 hvr-shutter-out-horizontal my-2"
                 >上一步</a
               >
-              <a href="#/checkout" class="btn-custom hvr-bounce-to-right my-2">下一步</a>
+              <a href="#" class="btn-custom hvr-bounce-to-right my-2 not-allowed" disabled @click.prevent="toOrder">下一步</a>
             </div>
           </Form>
         </div>
-        <div class="col-5">
+        <div class="col-md-5">
           <div class="order">
             <h3 class="fw-bold text-center">訂單明細</h3>
             <hr class="bg-dark" style="opacity: 1" />
@@ -98,9 +102,41 @@
               <div class="num fw-bold ms-auto">X {{ item.qty }}</div>
             </div>
             <ul class="list-unstyled mt-2">
-              <li class="fw-bold"><p>小計</p></li>
-              <li class="fw-bold"><p>運費</p></li>
+              <li class="fw-bold d-flex justify-content-between mb-1">
+                <p>小計</p>
+                <p>${{ totalPrice }}</p>
+              </li>
+              <li class="fw-bold d-flex justify-content-between">
+                <p>外送費</p>
+                <p class="text-success" v-if="totalPrice >= 599">$0</p>
+                <p class="text-success" v-else>$80</p>
+              </li>
             </ul>
+            <small class="text-danger d-flex justify-content-end fw-bold"
+              >消費金額滿599元免運費</small
+            >
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="輸入優惠券"
+                v-model="coupon"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+              <span class="input-group-text send fw-bold" id="basic-addon1" @click="sendCoupon">送出</span>
+            </div>
+            <hr class="bg-dark" style="opacity: 1" />
+            <div class="total d-flex justify-content-between">
+              <h4 class="fw-bold">總金額</h4>
+              <span class="fs-4 fw-bold" v-if="totalPrice >= 599">${{ totalPrice }}</span>
+              <span class="fs-4 fw-bold" v-else>${{ totalPrice + 80 }}</span>
+            </div>
+            <div class="sale d-flex justify-content-between" v-if="salePrice !== 0">
+              <h4 class="fw-bold text-danger">優惠價</h4>
+              <span class="fs-4 fw-bold text-danger" v-if="totalPrice >= 599">${{ Math.round(salePrice) }}</span>
+              <span class="fs-4 fw-bold text-danger" v-else>${{ Math.round(salePrice) + 80 }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -113,20 +149,62 @@ export default {
   data () {
     return {
       carts: [],
-      isLoading: false
+      isLoading: false,
+      totalPrice: 0,
+      coupon: '',
+      salePrice: 0,
+      form: {
+        user: {
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
+        }
+      }
     }
   },
+  inject: ['emitter'],
   methods: {
     getCart () {
       const api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/cart`
       this.isLoading = true
       this.$http.get(api).then((res) => {
         this.carts = res.data.data.carts
+        this.getTotalPrice()
         this.isLoading = false
       })
     },
     getTotalPrice () {
-
+      this.totalPrice = 0
+      this.carts.forEach((item) => {
+        this.totalPrice += item.total
+      })
+    },
+    sendCoupon () {
+      this.isLoading = true
+      const api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/coupon`
+      const data = {
+        code: this.coupon
+      }
+      this.$http.post(api, { data }).then(res => {
+        if (res.data.success) {
+          this.$sweetalert2(res)
+          this.isLoading = false
+          this.salePrice = res.data.data.final_total
+        } else {
+          this.$sweetalert2(res)
+          this.isLoading = false
+        }
+      })
+    },
+    toOrder () {
+      this.isLoading = true
+      const api = `${process.env.VUE_APP_URL}api/${process.env.VUE_APP_PATH}/order`
+      this.$http.post(api, { data: this.form }).then(res => {
+        this.isLoading = false
+        this.emitter.emit('update-cart')
+        this.$router.push(`/order/${res.data.orderId}`)
+      })
     }
   },
   created () {
